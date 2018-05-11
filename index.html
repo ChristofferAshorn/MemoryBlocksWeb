@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MemoryBlocks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <div class="bg">
+    <h1>MemoryBlocks</h1>
+    <div class="wrapper">
+      <progress value="0" max="100" id="uploader">0%</progress>
+      <input type="file" value="upload" id="fileBUtton"/>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBdhXGUZzIIF9lEZ_rakmPdsAWzjtHaC1w",
+      authDomain: "memoryblocks-60db4.firebaseapp.com",
+      databaseURL: "https://memoryblocks-60db4.firebaseio.com",
+      projectId: "memoryblocks-60db4",
+      storageBucket: "gs://memoryblocks-60db4.appspot.com",
+      messagingSenderId: "1051802555682"
+    };
+    firebase.initializeApp(config);
+    
+    // Get elements
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+
+    // Listen for file selection
+    fileButton.addEventListener('change', function(e) {
+      // Get file
+      var file = e.target.files[0];
+
+      // Create a storage ref
+      var storageRef = firebase.storage().ref('photos/' + file.name);
+
+      // Upload file
+      var task = storageRef.put(file);
+
+      // Update progress bar
+      task.on('state changed',
+
+        function progress(snapshot) {
+          var percentage = (snapshot.bytesTransferred() /
+           snapshot.totalBytes()) * 100;
+          uploader.value = percentage;
+        },
+
+        function error(err) {
+
+        },
+
+        function complete() {
+
+        }
+    
+      );
+    });
+  
+    </script>
+  </div>
+</body>
+</html>

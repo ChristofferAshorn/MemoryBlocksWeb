@@ -1,0 +1,53 @@
+body, html {
+  height: 100%;
+  background-color: ("blue");
+  font-family: "Droid Sans";
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#uploader {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 150px;
+  color: white;
+  margin: 0px;
+  text-align: center;
+
+}
+
+h2 {
+  font-size: 150px;
+  color: white;
+  margin: 50px;
+  text-align: center;
+
+}
+
+.bg { 
+  /* The image used */
+  background-image: url("/picture/Baggrund.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+
